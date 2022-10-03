@@ -15,15 +15,27 @@ main {
     border: 0px;
 }
 
+#play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    width: 80px;
+    height: 40px;
+}
+
 #canvas {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: transparent;
-    -webkit-backdrop-filter: blur(2px);
-            backdrop-filter: blur(2px);
     overflow: hidden;
     min-height: 0;
     min-width: 0;
+}
+
+#score {
+    margin: 40px;
+    font-size: 26px;
 }

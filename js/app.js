@@ -12,11 +12,11 @@ let alive = true;
 let animation = 0;
 let acumulation = 4;
 let apple = [];
-let size = 30;
+let size = 45;
 let minx = 4;
 let miny = 4;
-let maxx = 37;
-let maxy = 27;
+let maxx = 27;
+let maxy = 19;
 let posiblePositions = [];
 let score = 0;
 
@@ -74,6 +74,7 @@ function headDisplay(i, dead = false) {
     }
     forwardVel=axisVelocity;
     backwardVel=[snake[i][0] - snake[i+1][0], snake[i][1] - snake[i+1][1]];
+
     if (forwardVel[0] == -1 && forwardVel[1] == 0) {
         forwardDir = "l";
     }else if (forwardVel[0] == 0 && forwardVel[1] == -1) {
@@ -106,6 +107,19 @@ function headDisplay(i, dead = false) {
         }
 
     }else {
+
+        if (dead) {
+            if (backwardVel[0] == -1 && backwardVel[1] == 0) {
+                backwardDir = "r";
+            }else if (backwardVel[0] == 0 && backwardVel[1] == -1) {
+                backwardDir = "d";
+            }else if (backwardVel[0] == 1 && backwardVel[1] == 0) {
+                backwardDir = "l";
+            }else if (backwardVel[0] == 0 && backwardVel[1] == 1) {
+                backwardDir = "u";
+            }
+        }
+        console.log("head"+deadText+"-"+backwardDir+"-"+forwardDir);
         imgDisplay(snake[i][0], snake[i][1], "head"+deadText+"-"+backwardDir+"-"+forwardDir);
     }
 }
@@ -229,7 +243,7 @@ function outOfBorder(actualAV, snakeDied) {
         switch (eatStatus) {
             case 0:
                 let eater_open=document.getElementById("eater_open");
-                ctx.drawImage(eater_open, (snakeDied[0][0] + actualAV[0] - 1) * size - size, (snakeDied[0][1] + actualAV[1] - 1) * size - size, 90, 90);
+                ctx.drawImage(eater_open, (snakeDied[0][0] + actualAV[0] - 1) * size - size, (snakeDied[0][1] + actualAV[1] - 1) * size - size, size*3, size*3);
                 snake.unshift([snake[0][0]+actualAV[0],snake[0][1]+actualAV[1]]);
                 snake.pop()
                 for (let i = 0; i < snake.length; i++) {
@@ -245,7 +259,7 @@ function outOfBorder(actualAV, snakeDied) {
                 break;
             case 1:
                 let eater_closed=document.getElementById("eater_closed");
-                ctx.drawImage(eater_closed, (snakeDied[0][0] - 1) * size - size, (snakeDied[0][1] + - 1) * size - size, 90, 90);
+                ctx.drawImage(eater_closed, (snakeDied[0][0] - 1) * size - size, (snakeDied[0][1] + - 1) * size - size, size*3, size*3);
                 snake.shift();
                 for (let i = 0; i < snake.length; i++) {
                     if (i == 0) {
@@ -275,7 +289,6 @@ function outOfBorder(actualAV, snakeDied) {
                 break;
         }
     }, 1000/9);
-
 }
 
 //Function of the game
@@ -312,7 +325,7 @@ function play() {
     }
 }
 
-//Function to end the game and show the points of the player
+//Function to end the game, show the points of the player and restart the values
 function endGame() {
     alert("You die, score: " + score);
     document.getElementById("score").style.visibility = "hidden";
@@ -325,11 +338,11 @@ function endGame() {
     animation = 0;
     acumulation = 4;
     apple = [];
-    size = 30;
+    size = 45;
     minx = 4;
     miny = 4;
-    maxx = 37;
-    maxy = 27;
+    maxx = 27;
+    maxy = 19;
     posiblePositions = [];
     score = 0;
 }

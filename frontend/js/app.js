@@ -12,23 +12,38 @@ let alive = true;
 let animation = 0;
 let acumulation = 4;
 let apple = [];
-let size = 45;
 let minx = 4;
 let miny = 4;
-let maxx = 27;
-let maxy = 19;
 let posiblePositions = [];
 let score = 0;
 
 // Start the game
 function start() {
-    document.getElementById("play").style.visibility = "hidden";
+    dificulty=document.getElementById("dificulty").value;
+    if (dificulty == 2) {
+        canvasx = 1350;
+        canvasy = 990;
+        size = 30;
+    } else if ( dificulty == 1 ) {
+        canvasx = 1360;
+        canvasy = 1000;
+        size = 40;
+    } else {
+        canvasx = 1350;
+        canvasy = 1000;
+        size = 50;
+    }
+    document.getElementById("canvas").width=canvasx;
+    document.getElementById("canvas").height=canvasy;
+    maxx = (canvasx/size) - 3;
+    maxy = (canvasy/size) - 3;
+    document.getElementById("menu").style.visibility = "hidden";
     document.getElementById("score").style.visibility = "visible";
     canvas = document.getElementById("canvas");
     canvas.style.visibility="visible";
     ctx = canvas.getContext("2d");
     document.addEventListener("keydown", pressKey);
-    playTimer = setInterval(play, 1000/9);
+    playTimer = setInterval(play, 1000/(6+dificulty*2));
     document.getElementById("score").innerHTML = "Score: " + score;
 }
 
@@ -331,18 +346,13 @@ function endGame() {
     document.getElementById("score").style.visibility = "hidden";
     canvas = document.getElementById("canvas");
     canvas.style.visibility="hidden";
-    document.getElementById("play").style.visibility = "visible";
+    document.getElementById("menu").style.visibility = "visible";
     snake = [[6, 13]];
     axisVelocity = [1, 0];
     alive = true;
     animation = 0;
     acumulation = 4;
     apple = [];
-    size = 45;
-    minx = 4;
-    miny = 4;
-    maxx = 27;
-    maxy = 19;
     posiblePositions = [];
     score = 0;
 }

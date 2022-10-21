@@ -1,0 +1,26 @@
+version: '3.9'
+services:
+  frontendSnake:
+    container_name: frontendSnake
+    image: httpd:latest
+    working_dir: /usr/local/apache2/htdocs
+    ports:
+    - 8080:80
+    networks:
+      - snakeNetwork
+    volumes:
+    - ./frontend:/usr/local/apache2/htdocs
+  backendSnake:
+    container_name: backendSnake
+    image: node:16.17.0
+    tty: true
+    working_dir: /home/node/app
+    ports:
+      - 3030:3000
+    volumes:
+      - ./backend:/home/node/app
+    networks:
+      - snakeNetwork
+    command: /bin/bash -c "usermod -u `stat -c '%u' .` node && groupmod -g `stat -c '%g' .` node && su node -c 'npm install && npm start'"
+networks:
+  snakeNetwork:

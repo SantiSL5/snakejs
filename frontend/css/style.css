@@ -3,9 +3,9 @@
     padding: 0;
     overflow: hidden;
     -webkit-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 main {
@@ -13,6 +13,91 @@ main {
     width: 100%;
     background-color: #2e889a;
     border: 0px;
+}
+
+#login {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, .5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+    border-radius: 10px;
+}
+
+#login h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+}
+
+#login .user-box {
+    position: relative;
+}
+
+#login .user-box input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+}
+
+#login .user-box label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+}
+
+#login .user-box input:focus~label,
+#login .user-box input:valid~label {
+    top: -20px;
+    left: 0;
+    color: #03e9f4;
+    font-size: 12px;
+}
+
+#login form a {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #03e9f4;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+    letter-spacing: 4px;
+    border: solid 0.5px #03e9f4;
+}
+
+#login a:hover {
+    cursor: pointer;
+    background: #03e9f4;
+    color: #000;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #03e9f4,
+        0 0 5px #03e9f4,
+        0 0 5px #03e9f4,
+        0 0 5px #03e9f4;
+}
+
+#login a:first-of-type {
+    margin-right: 50px;
 }
 
 #menu {
@@ -23,14 +108,14 @@ main {
     flex-wrap: wrap;
     top: 50%;
     left: 50%;
-    height: 200px;
+    min-height: 200px;
     transform: translate(-50%, -50%);
     overflow: hidden;
     background-color: white;
     padding: 50px;
 }
 
-#menu > select {
+#menu>select {
     margin-bottom: 10px;
 }
 
@@ -50,6 +135,25 @@ main {
 }
 
 #score {
+    position:absolute;
+    overflow: hidden;
+    float: right;
+    top: 0;
+    left: 0;
+    display: flex;
     margin: 40px;
     font-size: 26px;
+}
+
+#credentials {
+    position:absolute;
+    overflow: hidden;
+    float: right;
+    top: 0;
+    right: 0;
+    display: flex;
+}
+
+#credentials >* {
+    margin: 20px;
 }

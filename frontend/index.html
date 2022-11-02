@@ -1,18 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
-    <script src="./js/app.js"></script>
+    <script src="./js/localstorage_service.js"></script>
+    <script src="./js/user_service.js"></script>
+    <script src="./js/ranking.js"></script>
+    <script src="./js/login.js"></script>
+    <script src="./js/game.js"></script>
     <title>Snake</title>
 </head>
+
 <body>
     <main>
-        <p id="score"></p>
-        <canvas id="canvas"></canvas>
-        <section id="menu">
+        <p id="score" style="visibility: hidden;"> <span id="yourscore"></span> <span id="yourhighscore"></span> <span id="highscore"></span></p>
+        <section id="credentials" style="visibility: hidden;">
+            <h1 id="username_credentials"></h1>
+            <button id="logout">Log out</button>
+        </section>
+        <canvas id="canvas" style="visibility: hidden;"></canvas>
+        <section id="login" style="visibility: hidden;">
+            <h2>Login</h2>
+            <form>
+                <div class="user-box">
+                    <input id="username_input" type="text" name="" required="">
+                    <label>Username</label>
+                </div>
+                <div class="user-box">
+                    <input id="password_input" type="password" name="" required="">
+                    <label>Password</label>
+                </div>
+                <a id="btn_register">Register</a>
+                <a id="btn_login">Login</a>
+            </form>
+            </div>
+            </form>
+        </section>
+        <section id="menu" style="visibility: hidden;">
             <select id="difficulty">
                 <option value="0">Easy</option>
                 <option value="1" selected>Normal</option>
@@ -22,11 +49,14 @@
                 <option value="0" selected>Normal</option>
                 <option value="1">Blocks</option>
             </select>
+            <p>Ranking</p>
+            <section id="ranking">
+            </section>
             <button id="play">Play</button>
         </section>
     </main>
     <div style="display:none;">
-        <img id="apple" src="assets/apple.png"/>
+        <img id="apple" src="assets/apple.png" />
         <!-- Eater -->
         <img id="eater_open" src="assets/eater_open.png">
         <img id="eater_closed" src="assets/eater_closed.png">
@@ -77,4 +107,5 @@
         <img id="bush" src="assets/bush.png">
     </div>
 </body>
+
 </html>

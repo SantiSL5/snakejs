@@ -222,7 +222,6 @@ function appleFunction() {
             acumulation = acumulation + 1 + (difficulty.value * 1);
             score++;
             if (mode.value==1 && score%(3-difficulty.value)==0) {
-                console.log("hola");
                 createBlock();
             }
             document.getElementById("yourscore").innerHTML = "Score: " + score;

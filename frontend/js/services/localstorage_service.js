@@ -18,6 +18,7 @@ function checkLogged() {
                 document.getElementById("credentials").style.visibility = "visible";
                 document.getElementById("score").style.visibility = "hidden";
                 document.getElementById("username_credentials").innerHTML= localUser.username;
+                menuHighScore();
                 loginStorage(localUser);
             }else {
                 document.getElementById("login").style.visibility = "visible";

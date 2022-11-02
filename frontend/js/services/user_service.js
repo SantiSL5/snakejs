@@ -34,15 +34,3 @@ async function login(data = {}) {
     let res = await response.json();
     return res;
 }
-
-async function sumbitScore(data = {}) {
-    const response = await fetch("http://localhost:3030/api/ranking/addScore", {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-        mode: 'cors'
-    });
-    await response.json();
-}

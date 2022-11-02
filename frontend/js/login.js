@@ -26,6 +26,7 @@ function loginForm() {
                 document.getElementById("credentials").style.visibility = "visible";
                 loginStorage(user);
                 document.getElementById("username_credentials").value = user.username;
+                menuHighScore();
             } else {
                 alert(result.result);
             }

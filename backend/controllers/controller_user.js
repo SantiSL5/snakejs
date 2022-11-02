@@ -5,7 +5,6 @@ exports.getUsers = (req, res) => {
         if (err) {
             console.log(err);
         }
-        console.log(jsonString);
         res.send(jsonString);
     });
 }
@@ -42,7 +41,6 @@ exports.login = (req, res) => {
         }
         for (let i = 0; i < jsonParsed.users.length; i++) {
             if (jsonParsed.users[i].username == req.body.username) {
-                console.log(i);
                 userPosition=i;
             }
         }

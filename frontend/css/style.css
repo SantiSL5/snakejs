@@ -109,6 +109,7 @@ main {
     top: 50%;
     left: 50%;
     min-height: 200px;
+    min-width: 250px;
     transform: translate(-50%, -50%);
     overflow: hidden;
     background-color: white;
@@ -146,12 +147,13 @@ main {
 }
 
 #credentials {
+    display: flex;
+    flex-direction: column;
     position:absolute;
     overflow: hidden;
     float: right;
     top: 0;
     right: 0;
-    display: flex;
 }
 
 #credentials >* {

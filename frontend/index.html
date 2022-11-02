@@ -6,8 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
-    <script src="./js/localstorage_service.js"></script>
-    <script src="./js/user_service.js"></script>
+    <script src="./js/services/localstorage_service.js"></script>
+    <script src="./js/services/user_service.js"></script>
+    <script src="./js/services/ranking_service.js"></script>
     <script src="./js/ranking.js"></script>
     <script src="./js/login.js"></script>
     <script src="./js/game.js"></script>
@@ -40,15 +41,18 @@
             </form>
         </section>
         <section id="menu" style="visibility: hidden;">
+            <p>Difficulty:</p>
             <select id="difficulty">
-                <option value="0">Easy</option>
-                <option value="1" selected>Normal</option>
-                <option value="2">Hard</option>
+                <option value="0" class="menu_option">Easy</option>
+                <option value="1" class="menu_option" selected>Normal</option>
+                <option value="2" class="menu_option">Hard</option>
             </select>
+            <p>Mode:</p>
             <select id="mode">
-                <option value="0" selected>Normal</option>
-                <option value="1">Blocks</option>
+                <option value="0" class="menu_option" selected>Normal</option>
+                <option value="1" class="menu_option">Blocks</option>
             </select>
+            <p>Your HighScore: <span id="menuHS"></span></p>
             <p>Ranking</p>
             <section id="ranking">
             </section>

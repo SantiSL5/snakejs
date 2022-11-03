@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function loginForm() {
     let username=document.getElementById("username_input").value;
     let password=document.getElementById("password_input").value;
+    console.log(username,password);
     if (username != "" && password != "") {
         let user={
             "username":username,
@@ -25,7 +26,7 @@ function loginForm() {
                 document.getElementById("menu").style.visibility = "visible";
                 document.getElementById("credentials").style.visibility = "visible";
                 loginStorage(user);
-                document.getElementById("username_credentials").value = user.username;
+                document.getElementById("username_credentials").innerHTML = user.username;
                 menuHighScore();
             } else {
                 alert(result.result);

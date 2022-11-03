@@ -37,7 +37,7 @@ async function getBestScore(data = {}) {
 }
 
 async function getRanking(data = {}) {
-    const response = await fetch("http://localhost:3030/api/ranking/?" + new URLSearchParams(data), {
+    const response = await fetch("http://localhost:3030/api/ranking/ranking?" + new URLSearchParams(data), {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

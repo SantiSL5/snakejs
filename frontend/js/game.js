@@ -471,6 +471,7 @@ function endGame() {
         "mode":mode.value
     }).then(res => {
         menuHighScore();
+        menuRanking();
     });
     alert("You die, score: " + score);
     document.getElementById("score").style.visibility = "hidden";

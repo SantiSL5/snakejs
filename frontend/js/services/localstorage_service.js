@@ -19,6 +19,7 @@ function checkLogged() {
                 document.getElementById("score").style.visibility = "hidden";
                 document.getElementById("username_credentials").innerHTML= localUser.username;
                 menuHighScore();
+                menuRanking();
                 loginStorage(localUser);
             }else {
                 document.getElementById("login").style.visibility = "visible";

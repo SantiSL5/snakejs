@@ -161,3 +161,9 @@ main {
 #credentials >* {
     margin: 20px;
 }
+
+#menuRanking {
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+}

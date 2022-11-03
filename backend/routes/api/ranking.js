@@ -4,9 +4,10 @@ const rankingController = require('../../controllers/controller_ranking');
 
 //api/ranking
 
-router.post('/', rankingController.getRanking);
-router.post('/hs', rankingController.getHighscore);
+router.get('/', rankingController.getRankings);
+router.get('/hs', rankingController.getHighscore);
+router.get('/bs', rankingController.getBestScore);
 router.post('/addScore', rankingController.addScore);
-// router.delete('/:id', rankingController.deleteRanking);
+router.get('/ranking', rankingController.getRanking);
 
 module.exports = router;

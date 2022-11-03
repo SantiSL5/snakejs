@@ -24,6 +24,18 @@ async function getHighScore(data = {}) {
     return res;
 }
 
+async function getBestScore(data = {}) {
+    const response = await fetch("http://localhost:3030/api/ranking/bs?" + new URLSearchParams(data), {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        mode: 'cors'
+    });
+    let res=await response.json();
+    return res;
+}
+
 async function getRanking(data = {}) {
     const response = await fetch("http://localhost:3030/api/ranking/?" + new URLSearchParams(data), {
         method: 'GET',

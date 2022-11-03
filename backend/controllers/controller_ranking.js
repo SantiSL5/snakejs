@@ -75,7 +75,6 @@ exports.getBestScore = (req, res) => {
         if (err) {
             console.log(err);
         }
-        console.log(ranking);
         if (jsonParsed[ranking].length > 0) {
             jsonParsed[ranking].sort((a,b) => b.score - a.score);
             res.send({"bestScore":jsonParsed[ranking][0].score});
@@ -94,7 +93,6 @@ exports.getRanking = (req, res) => {
         if (err) {
             console.log(err);
         }
-        console.log(ranking);
         if (jsonParsed[ranking].length > 0) {
             jsonParsed[ranking].sort((a,b) => b.score - a.score);
             res.send(jsonParsed[ranking].slice(0,3));

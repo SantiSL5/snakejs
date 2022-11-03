@@ -19,6 +19,7 @@ let miny = 4;
 let posiblePositions = [];
 let score = 0;
 let highScore = 0;
+let bestScore = 0;
 let deadText, canvas, canvasx, canvasy, size, maxx, maxy, ctx, playTimer, posNotEquals, forwardVel, forwardDir, backwardVel, backwardDir, eatStatus, newAxisVelocity, bone;
 
 // Start the game
@@ -32,6 +33,15 @@ function start() {
     }).then(hs => {
         highScore = hs.highScore;
         document.getElementById("yourhighscore").innerHTML = hs.highScore;
+    });
+
+    getBestScore({
+        "username":getUser(),
+        "difficulty":difficulty,
+        "mode":mode
+    }).then(bs => {
+        bestScore = bs.bestScore;
+        document.getElementById("bestscore").innerHTML = bs.bestScore;
     });
     if (difficulty == 2) {
         canvasx = 1350;
@@ -233,6 +243,9 @@ function appleFunction() {
             document.getElementById("yourscore").innerHTML = score;
             if (score >= highScore) {
                 document.getElementById("yourhighscore").innerHTML = score;
+            }
+            if (score >= bestScore) {
+                document.getElementById("bestscore").innerHTML = score;
             }
             if (mode.value==1 && score%(3-difficulty.value)==0) {
                 createBlock();

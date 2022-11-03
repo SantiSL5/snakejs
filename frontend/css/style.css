@@ -158,8 +158,28 @@ main {
     right: 0;
 }
 
-#credentials >* {
-    margin: 20px;
+#credentials > section {
+    margin: 15px;
+}
+
+#credentials > button {
+    height: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#username_credentials {
+    height: min-content;
+}
+
+#user_credentials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#image_credentials {
+    width: 90px;
 }
 
 #menuRanking {

@@ -12,12 +12,13 @@ function checkLogged() {
     if (localStorage.getItem('user')) {
         let localUser=JSON.parse(window.atob(localStorage.getItem('user')));
         login(localUser).then(user => {
-            if (user.result == "logged") {
+            if (user.result==undefined) {
                 document.getElementById("login").style.visibility = "hidden";
                 document.getElementById("menu").style.visibility = "visible";
                 document.getElementById("credentials").style.visibility = "visible";
                 document.getElementById("score").style.visibility = "hidden";
-                document.getElementById("username_credentials").innerHTML= localUser.username;
+                document.getElementById("username_credentials").innerHTML= user.username;
+                document.getElementById("image_credentials").src= user.img;
                 menuHighScore();
                 menuRanking();
                 loginStorage(localUser);

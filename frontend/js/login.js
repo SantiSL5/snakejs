@@ -14,19 +14,19 @@ document.addEventListener('DOMContentLoaded', function () {
 function loginForm() {
     let username=document.getElementById("username_input").value;
     let password=document.getElementById("password_input").value;
-    console.log(username,password);
     if (username != "" && password != "") {
         let user={
             "username":username,
             "password":password,
         };
         login(user).then(result => {
-            if (result.result=="logged") {
+            if (result.result == undefined) {
                 document.getElementById("login").style.visibility = "hidden";
                 document.getElementById("menu").style.visibility = "visible";
                 document.getElementById("credentials").style.visibility = "visible";
                 loginStorage(user);
-                document.getElementById("username_credentials").innerHTML = user.username;
+                document.getElementById("username_credentials").innerHTML = result.username;
+                document.getElementById("image_credentials").src = result.img;
                 menuHighScore();
             } else {
                 alert(result.result);
@@ -45,17 +45,22 @@ function registerForm() {
     let username=document.getElementById("username_input").value;
     let password=document.getElementById("password_input").value;
     if (username != "" && password != "") {
-        let user={
-            "username":username,
-            "password":password,
-        }
-        addUser(user).then(result => {
-            if (result.result=="taked") {
-                alert("Username is already taked");
-            } else if (result.result=="ok") {
-                alert("Account created");
+        getProfileImage().then(img =>{
+            let user={
+                "username":username,
+                "password":password,
+                "img": img
             }
+            console.log(user); 
+            addUser(user).then(result => {
+                if (result.result=="taked") {
+                    alert("Username is already taked");
+                } else if (result.result=="ok") {
+                    alert("Account created");
+                }
+            });
         });
+
     }else if (username == "" && password == "") {
         alert("Insert username and password");
     }else if (username == "") {

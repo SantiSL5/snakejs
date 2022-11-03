@@ -48,7 +48,7 @@ exports.login = (req, res) => {
             res.send({"result":"Username not exists"});
         }else {
             if (jsonParsed.users[userPosition].password == req.body.password) {
-                res.send({"result":"logged"});
+                res.send(jsonParsed.users[userPosition]);
             }else {
                 res.send({"result":"Password is incorrect"});
             }

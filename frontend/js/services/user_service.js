@@ -34,3 +34,13 @@ async function login(data = {}) {
     let res = await response.json();
     return res;
 }
+
+async function getProfileImage() {
+    let url = "https://pokeapi.co/api/v2/pokemon/" + Math.floor(Math.random() * 905);
+    const response = await fetch(url, {
+        method: 'GET',
+    });
+    let resjson = await response.json();
+    let res = resjson['sprites']['other']['official-artwork']['front_default'];
+    return res;
+}

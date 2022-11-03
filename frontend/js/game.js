@@ -18,12 +18,21 @@ let minx = 4;
 let miny = 4;
 let posiblePositions = [];
 let score = 0;
+let highScore = 0;
 let deadText, canvas, canvasx, canvasy, size, maxx, maxy, ctx, playTimer, posNotEquals, forwardVel, forwardDir, backwardVel, backwardDir, eatStatus, newAxisVelocity, bone;
 
 // Start the game
 function start() {
     let difficulty=document.getElementById("difficulty").value;
-    let mode=document.getElementById("difficulty").value;
+    let mode=document.getElementById("mode").value;
+    getHighScore({
+        "username":getUser(),
+        "difficulty":difficulty,
+        "mode":mode
+    }).then(hs => {
+        highScore = hs.highScore;
+        document.getElementById("yourhighscore").innerHTML = hs.highScore;
+    });
     if (difficulty == 2) {
         canvasx = 1350;
         canvasy = 990;
@@ -48,7 +57,7 @@ function start() {
     ctx = canvas.getContext("2d");
     document.addEventListener("keydown", pressKey);
     playTimer = setInterval(play, 1000/(6+(difficulty*4)));
-    document.getElementById("yourscore").innerHTML = "Score: " + score;
+    document.getElementById("yourscore").innerHTML = score;
 }
 
 //General function to display img
@@ -221,16 +230,33 @@ function appleFunction() {
         if (snake[0][0] + axisVelocity[0] == apple[0][0] && snake[0][1] + axisVelocity[1] == apple[0][1]) {
             acumulation = acumulation + 1 + (difficulty.value * 1);
             score++;
+            document.getElementById("yourscore").innerHTML = score;
+            if (score >= highScore) {
+                document.getElementById("yourhighscore").innerHTML = score;
+            }
             if (mode.value==1 && score%(3-difficulty.value)==0) {
                 createBlock();
             }
-            document.getElementById("yourscore").innerHTML = "Score: " + score;
             apple.pop();
         }else {
             imgDisplay(apple[0][0], apple[0][1], "apple");
         }
     }else {
         createApple();
+        if (snake[0][0] + axisVelocity[0] == apple[0][0] && snake[0][1] + axisVelocity[1] == apple[0][1]) {
+            acumulation = acumulation + 1 + (difficulty.value * 1);
+            score++;
+            document.getElementById("yourscore").innerHTML = score;
+            if (score >= highScore) {
+                document.getElementById("yourhighscore").innerHTML = score;
+            }
+            if (mode.value==1 && score%(3-difficulty.value)==0) {
+                createBlock();
+            }
+            apple.pop();
+        }else {
+            imgDisplay(apple[0][0], apple[0][1], "apple");
+        }
     }
 }
 
@@ -430,6 +456,8 @@ function endGame() {
         "score":score,
         "difficulty":difficulty.value,
         "mode":mode.value
+    }).then(res => {
+        menuHighScore();
     });
     alert("You die, score: " + score);
     document.getElementById("score").style.visibility = "hidden";

@@ -139,6 +139,8 @@ main {
     position:absolute;
     overflow: hidden;
     float: right;
+    display: flex;
+    flex-direction: column;
     top: 0;
     left: 0;
     display: flex;

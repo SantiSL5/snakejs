@@ -9,7 +9,7 @@ async function sumbitScore(data = {}) {
         body: JSON.stringify(data),
         mode: 'cors'
     });
-    await response.json();
+    await response;
 }
 
 async function getHighScore(data = {}) {

@@ -342,27 +342,6 @@ function createBlock() {
         }
     }
     if (posiblePositions.length > 0) {
-        let blockvalue=Math.floor(Math.random() * posiblePositions.length);
-        blocks.push(posiblePositions[Math.floor(Math.random() * posiblePositions.length)]);
-        posiblePositions.splice(blockvalue,1);
-        blocks.push(posiblePositions[Math.floor(Math.random() * posiblePositions.length)]);
-        posiblePositions.splice(blockvalue,1);
-        blocks.push(posiblePositions[Math.floor(Math.random() * posiblePositions.length)]);
-        posiblePositions.splice(blockvalue,1);
-        blocks.push(posiblePositions[Math.floor(Math.random() * posiblePositions.length)]);
-        posiblePositions.splice(blockvalue,1);
-        blocks.push(posiblePositions[Math.floor(Math.random() * posiblePositions.length)]);
-        posiblePositions.splice(blockvalue,1);
-        blocks.push(posiblePositions[Math.floor(Math.random() * posiblePositions.length)]);
-        posiblePositions.splice(blockvalue,1);
-        blocks.push(posiblePositions[Math.floor(Math.random() * posiblePositions.length)]);
-        posiblePositions.splice(blockvalue,1);
-        blocks.push(posiblePositions[Math.floor(Math.random() * posiblePositions.length)]);
-        posiblePositions.splice(blockvalue,1);
-        blocks.push(posiblePositions[Math.floor(Math.random() * posiblePositions.length)]);
-        posiblePositions.splice(blockvalue,1);
-        blocks.push(posiblePositions[Math.floor(Math.random() * posiblePositions.length)]);
-        posiblePositions.splice(blockvalue,1);
         blocks.push(posiblePositions[Math.floor(Math.random() * posiblePositions.length)]);
     }
 }

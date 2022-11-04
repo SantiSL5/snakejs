@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 }, false);
 
+//Get your highscore of the current game mode and difficulty on menu
 function menuHighScore() {
     let difficulty=document.getElementById("difficulty").value;
     let mode=document.getElementById("mode").value;
@@ -23,6 +24,7 @@ function menuHighScore() {
     });
 }
 
+//Get ranking of the current game mode and difficulty on menu
 function menuRanking() {
     let difficulty=document.getElementById("difficulty").value;
     let mode=document.getElementById("mode").value;

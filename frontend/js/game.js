@@ -307,6 +307,8 @@ function appleFunction() {
     }
 }
 
+
+//Create the blocks
 function createBlock() {
     posiblePositions.length=0;
     for (let i = minx; i < maxx+1; i++) {
@@ -340,10 +342,32 @@ function createBlock() {
         }
     }
     if (posiblePositions.length > 0) {
+        let blockvalue=Math.floor(Math.random() * posiblePositions.length);
+        blocks.push(posiblePositions[Math.floor(Math.random() * posiblePositions.length)]);
+        posiblePositions.splice(blockvalue,1);
+        blocks.push(posiblePositions[Math.floor(Math.random() * posiblePositions.length)]);
+        posiblePositions.splice(blockvalue,1);
+        blocks.push(posiblePositions[Math.floor(Math.random() * posiblePositions.length)]);
+        posiblePositions.splice(blockvalue,1);
+        blocks.push(posiblePositions[Math.floor(Math.random() * posiblePositions.length)]);
+        posiblePositions.splice(blockvalue,1);
+        blocks.push(posiblePositions[Math.floor(Math.random() * posiblePositions.length)]);
+        posiblePositions.splice(blockvalue,1);
+        blocks.push(posiblePositions[Math.floor(Math.random() * posiblePositions.length)]);
+        posiblePositions.splice(blockvalue,1);
+        blocks.push(posiblePositions[Math.floor(Math.random() * posiblePositions.length)]);
+        posiblePositions.splice(blockvalue,1);
+        blocks.push(posiblePositions[Math.floor(Math.random() * posiblePositions.length)]);
+        posiblePositions.splice(blockvalue,1);
+        blocks.push(posiblePositions[Math.floor(Math.random() * posiblePositions.length)]);
+        posiblePositions.splice(blockvalue,1);
+        blocks.push(posiblePositions[Math.floor(Math.random() * posiblePositions.length)]);
+        posiblePositions.splice(blockvalue,1);
         blocks.push(posiblePositions[Math.floor(Math.random() * posiblePositions.length)]);
     }
 }
 
+//Function to display the blocks
 function blocksDisplay() {
     for (let i = 0; i < blocks.length; i++) {
         imgDisplay(blocks[i][0], blocks[i][1], "bush");   

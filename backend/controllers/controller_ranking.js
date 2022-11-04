@@ -1,5 +1,6 @@
 const fs = require('fs');
 
+// Get all rankings for debug
 exports.getRankings = (req, res) => {
     fs.readFile("bbdd/ranking/ranking.json", "utf8", (err, jsonString) => {
         if (err) {
@@ -9,6 +10,7 @@ exports.getRankings = (req, res) => {
     });
 }
 
+//Add new score
 exports.addScore = (req, res) => {
     fs.readFile("bbdd/ranking/ranking.json", "utf8", (err, jsonString) => {
         jsonParsed=JSON.parse(jsonString);
@@ -43,6 +45,7 @@ exports.addScore = (req, res) => {
     });
 }
 
+//Get the highscore of a user in a mode and dificulty
 exports.getHighscore = (req, res) => {
     fs.readFile("bbdd/ranking/ranking.json", "utf8", (err, jsonString) => {
         jsonParsed=JSON.parse(jsonString);
@@ -66,6 +69,7 @@ exports.getHighscore = (req, res) => {
     });
 }
 
+//Get the bestscore in a mode and dificulty
 exports.getBestScore = (req, res) => {
     fs.readFile("bbdd/ranking/ranking.json", "utf8", (err, jsonString) => {
         jsonParsed=JSON.parse(jsonString);
@@ -84,6 +88,7 @@ exports.getBestScore = (req, res) => {
     });
 }
 
+// Get a ranking
 exports.getRanking = (req, res) => {
     fs.readFile("bbdd/ranking/ranking.json", "utf8", (err, jsonString) => {
         jsonParsed=JSON.parse(jsonString);

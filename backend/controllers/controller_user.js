@@ -1,5 +1,6 @@
 const fs = require('fs');
 
+//Get all users for debug
 exports.getUsers = (req, res) => {
     fs.readFile("bbdd/user/user.json", "utf8", (err, jsonString) => {
         if (err) {
@@ -9,6 +10,7 @@ exports.getUsers = (req, res) => {
     });
 }
 
+//Register an user
 exports.addUser = (req, res) => {
     fs.readFile("bbdd/user/user.json", "utf8", (err, jsonString) => {
         jsonParsed=JSON.parse(jsonString)
@@ -32,6 +34,7 @@ exports.addUser = (req, res) => {
     });
 }
 
+//Login
 exports.login = (req, res) => {
     fs.readFile("bbdd/user/user.json", "utf8", (err, jsonString) => {
         jsonParsed=JSON.parse(jsonString)

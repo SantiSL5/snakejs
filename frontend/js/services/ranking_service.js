@@ -1,5 +1,7 @@
 "use strict";
 
+//Fetch's for ranking endpoints
+
 async function sumbitScore(data = {}) {
     const response = await fetch("http://localhost:3030/api/ranking/addScore", {
         method: 'POST',

@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', function () {
     checkLogged();
 }, false);
 
+
+//Checks valid values from login form input
 function loginForm() {
     let username=document.getElementById("username_input").value;
     let password=document.getElementById("password_input").value;
@@ -41,6 +43,7 @@ function loginForm() {
     }
 }
 
+//Checks valid values from register form inputs
 function registerForm() {
     let username=document.getElementById("username_input").value;
     let password=document.getElementById("password_input").value;

@@ -1,5 +1,7 @@
 "use strict";
 
+//Functions relationated with localstorage
+
 function loginStorage(user) {
     localStorage.setItem('user', window.btoa(JSON.stringify(user)));
 }

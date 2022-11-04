@@ -1,5 +1,7 @@
 "use strict";
 
+//Fetch's for users endpoints
+
 async function getUsers(data = {}) {
     const response = await fetch("http://localhost:3030/api/user", {
         method: 'GET',

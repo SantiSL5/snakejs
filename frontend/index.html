@@ -13,6 +13,7 @@
     <script src="./js/login.js"></script>
     <script src="./js/game.js"></script>
     <title>Snake</title>
+    <link rel="icon" href="assets/head-u.png">
 </head>
 
 <body>
@@ -58,6 +59,12 @@
             <select id="mode">
                 <option value="0" class="menu_option" selected>Normal</option>
                 <option value="1" class="menu_option">Blocks</option>
+                <option value="2" class="menu_option">Teleport</option>
+            </select>
+            <p>Item:</p>
+            <select id="item">
+                <option value="apple" selected>Apple</option>
+                <option value="banana">Banana</option>
             </select>
             <p>Your HighScore: <span id="menuHS"></span></p>
             <p>Ranking:</p>
@@ -67,7 +74,9 @@
         </section>
     </main>
     <div style="display:none;">
+        <!-- Items -->
         <img id="apple" src="assets/apple.png" />
+        <img id="banana" src="assets/banana.png" />
         <!-- Eater -->
         <img id="eater_open" src="assets/eater_open.png">
         <img id="eater_closed" src="assets/eater_closed.png">

@@ -51,7 +51,6 @@ function registerForm() {
                 "password":password,
                 "img": img
             }
-            console.log(user); 
             addUser(user).then(result => {
                 if (result.result=="taked") {
                     alert("Username is already taked");

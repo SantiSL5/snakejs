@@ -21,11 +21,13 @@ let score = 0;
 let highScore = 0;
 let bestScore = 0;
 let deadText, canvas, canvasx, canvasy, size, maxx, maxy, ctx, playTimer, posNotEquals, forwardVel, forwardDir, backwardVel, backwardDir, eatStatus, newAxisVelocity, bone;
+let lastTailForwardVelocity=[];
 
 // Start the game
 function start() {
     let difficulty=document.getElementById("difficulty").value;
     let mode=document.getElementById("mode").value;
+    let item=document.getElementById("item").value;
     getHighScore({
         "username":getUser(),
         "difficulty":difficulty,
@@ -100,7 +102,18 @@ function tailDisplay(i) {
         imgDisplay(snake[i][0], snake[i][1], "tail-r");
     }else if (forwardVel[0] == 0 && forwardVel[1] == 1) {
         imgDisplay(snake[i][0], snake[i][1], "tail-d");
+    }else {
+        if (lastTailForwardVelocity[0] == -1 && lastTailForwardVelocity[1] == 0) {
+            imgDisplay(snake[i][0], snake[i][1], "tail-l");
+        }else if (lastTailForwardVelocity[0] == 0 && lastTailForwardVelocity[1] == -1) {
+            imgDisplay(snake[i][0], snake[i][1], "tail-u");
+        }else if (lastTailForwardVelocity[0] == 1 && lastTailForwardVelocity[1] == 0) {
+            imgDisplay(snake[i][0], snake[i][1], "tail-r");
+        }else if (lastTailForwardVelocity[0] == 0 && lastTailForwardVelocity[1] == 1) {
+            imgDisplay(snake[i][0], snake[i][1], "tail-d");
+        }
     }
+    lastTailForwardVelocity=forwardVel;
 }
 
 //Function to display snake head and snake dead head when it colision with itself
@@ -131,6 +144,10 @@ function headDisplay(i, dead = false) {
         backwardDir = "r";
     }else if (backwardVel[0] == 0 && backwardVel[1] == 1) {
         backwardDir = "d";
+    }
+
+    if ((forwardDir == "u" && backwardDir == "d") || (forwardDir == "d" && backwardDir == "u") || (forwardDir == "r" && backwardDir == "l") || (forwardDir == "l" && backwardDir == "r")) {
+        backwardDir=forwardDir;
     }
 
     if (forwardDir == backwardDir) {
@@ -185,6 +202,10 @@ function bodyDisplay(i) {
         backwardDir = "d";
     }
 
+    if ((forwardDir == "u" && backwardDir == "d") || (forwardDir == "d" && backwardDir == "u") || (forwardDir == "r" && backwardDir == "l") || (forwardDir == "l" && backwardDir == "r")) {
+        backwardDir=forwardDir;
+    }
+
     if (forwardDir == backwardDir) {
         if (forwardDir == "u" || forwardDir == "d") {
             imgDisplay(snake[i][0], snake[i][1], "body-v");
@@ -202,6 +223,7 @@ function bodyDisplay(i) {
         }else if (backwardVel[0] == 0 && backwardVel[1] == 1) {
             backwardDir = "d";
         }
+
         if (forwardDir == "u" || forwardDir == "d") {
             imgDisplay(snake[i][0], snake[i][1], "curve-"+forwardDir+"-"+backwardDir);
         }else if (backwardDir == "u" || backwardDir == "d") {
@@ -231,44 +253,57 @@ function createApple() {
             }
         }
     }
-    apple.push(posiblePositions[Math.floor(Math.random() * posiblePositions.length)]);
+    let firstvalue=Math.floor(Math.random() * posiblePositions.length);
+    apple.push(posiblePositions[firstvalue]);
+    if (mode.value==2) {
+        posiblePositions.splice(firstvalue,1);
+        apple.push(posiblePositions[Math.floor(Math.random() * posiblePositions.length)]);
+    } 
 }
 
 //Function to check if an apple has been eated
 function appleFunction() {
-    if (apple.length == 1) {
-        if (snake[0][0] + axisVelocity[0] == apple[0][0] && snake[0][1] + axisVelocity[1] == apple[0][1]) {
-            acumulation = acumulation + 1 + (difficulty.value * 1);
-            score++;
-            document.getElementById("yourscore").innerHTML = score;
-            if (score >= highScore) {
-                document.getElementById("yourhighscore").innerHTML = score;
+    if (apple.length >= 1) {
+        for (let i = 0; i < apple.length; i++) {
+            if (snake[0][0] + axisVelocity[0] == apple[i][0] && snake[0][1] + axisVelocity[1] == apple[i][1]) {
+                acumulation = acumulation + 1 + (difficulty.value * 1);
+                score++;
+                document.getElementById("yourscore").innerHTML = score;
+                if (score >= highScore) {
+                    document.getElementById("yourhighscore").innerHTML = score;
+                }
+                if (score >= bestScore) {
+                    document.getElementById("bestscore").innerHTML = score;
+                }
+                if (mode.value==1 && score%(3-difficulty.value)==0) {
+                    createBlock();
+                }
+                apple.splice(i,1);
+            }else {
+                console.log(item);
+                imgDisplay(apple[i][0], apple[i][1], item.value);
             }
-            if (score >= bestScore) {
-                document.getElementById("bestscore").innerHTML = score;
-            }
-            if (mode.value==1 && score%(3-difficulty.value)==0) {
-                createBlock();
-            }
-            apple.pop();
-        }else {
-            imgDisplay(apple[0][0], apple[0][1], "apple");
         }
     }else {
         createApple();
-        if (snake[0][0] + axisVelocity[0] == apple[0][0] && snake[0][1] + axisVelocity[1] == apple[0][1]) {
-            acumulation = acumulation + 1 + (difficulty.value * 1);
-            score++;
-            document.getElementById("yourscore").innerHTML = score;
-            if (score >= highScore) {
-                document.getElementById("yourhighscore").innerHTML = score;
+        for (let i = 0; i < apple.length; i++) {
+            if (snake[0][0] + axisVelocity[0] == apple[i][0] && snake[0][1] + axisVelocity[1] == apple[i][1]) {
+                acumulation = acumulation + 1 + (difficulty.value * 1);
+                score++;
+                document.getElementById("yourscore").innerHTML = score;
+                if (score >= highScore) {
+                    document.getElementById("yourhighscore").innerHTML = score;
+                }
+                if (score >= bestScore) {
+                    document.getElementById("bestscore").innerHTML = score;
+                }
+                if (mode.value==1 && score%(3-difficulty.value)==0) {
+                    createBlock();
+                }
+                apple.splice(i,1);
+            }else {
+                imgDisplay(apple[i][0], apple[i][1], item.value);
             }
-            if (mode.value==1 && score%(3-difficulty.value)==0) {
-                createBlock();
-            }
-            apple.pop();
-        }else {
-            imgDisplay(apple[0][0], apple[0][1], "apple");
         }
     }
 }
@@ -439,7 +474,14 @@ function play() {
         clearInterval(playTimer);
         endGame();
     }else{
-        snake.unshift([snake[0][0]+axisVelocity[0],snake[0][1]+axisVelocity[1]]);
+        if (mode.value==2 && apple.length==1) {
+            snake.unshift([snake[0][0]+axisVelocity[0],snake[0][1]+axisVelocity[1]]);
+            snake.unshift([apple[0][0],apple[0][1]]);
+            acumulation--;
+            apple.pop();
+        }else {
+            snake.unshift([snake[0][0]+axisVelocity[0],snake[0][1]+axisVelocity[1]]);
+        }
         if (acumulation > 0) {
             acumulation--;
         }else {

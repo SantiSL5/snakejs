@@ -280,7 +280,6 @@ function appleFunction() {
                 }
                 apple.splice(i,1);
             }else {
-                console.log(item);
                 imgDisplay(apple[i][0], apple[i][1], item.value);
             }
         }

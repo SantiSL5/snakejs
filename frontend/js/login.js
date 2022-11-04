@@ -44,7 +44,7 @@ function loginForm() {
 function registerForm() {
     let username=document.getElementById("username_input").value;
     let password=document.getElementById("password_input").value;
-    if (username != "" && password != "") {
+    if (username != "" && password != "" && new RegExp(/^.[0-9a-zA-Z]{3,15}$/).test(username) && new RegExp(/^.(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,32})/).test(password)) {
         getProfileImage().then(img =>{
             let user={
                 "username":username,
@@ -66,5 +66,9 @@ function registerForm() {
         alert("Insert username");
     }else if (password== "") {
         alert("Insert password");
+    }else if (!(new RegExp(/^.[0-9a-zA-Z]{3,15}$/).test(username))){
+        alert("Insert a valid username, 3-15 characters");
+    }else if (!(new RegExp(/^.(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,32})/).test(password))){
+        alert("Insert a valid and strong password from 8 to 32 characters");
     }
 }

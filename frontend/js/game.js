@@ -255,7 +255,7 @@ function createApple() {
     }
     let firstvalue=Math.floor(Math.random() * posiblePositions.length);
     apple.push(posiblePositions[firstvalue]);
-    if (mode.value==2) {
+    if (mode.value==2 || mode.value==3) {
         posiblePositions.splice(firstvalue,1);
         apple.push(posiblePositions[Math.floor(Math.random() * posiblePositions.length)]);
     } 
@@ -275,7 +275,7 @@ function appleFunction() {
                 if (score >= bestScore) {
                     document.getElementById("bestscore").innerHTML = score;
                 }
-                if (mode.value==1 && score%(3-difficulty.value)==0) {
+                if ((mode.value==1 || mode.value==3) && score%(3-difficulty.value)==0) {
                     createBlock();
                 }
                 apple.splice(i,1);
@@ -296,7 +296,7 @@ function appleFunction() {
                 if (score >= bestScore) {
                     document.getElementById("bestscore").innerHTML = score;
                 }
-                if (mode.value==1 && score%(3-difficulty.value)==0) {
+                if ((mode.value==1 || mode.value==3) && score%(3-difficulty.value)==0) {
                     createBlock();
                 }
                 apple.splice(i,1);
@@ -403,7 +403,7 @@ function outOfBorder(actualAV, snakeDied) {
                 snake.unshift([snake[0][0]+actualAV[0],snake[0][1]+actualAV[1]]);
                 snake.pop()
                 appleFunction();
-                if (mode.value==1) {
+                if (mode.value==1 || mode.value==3) {
                     blocksDisplay();
                 }
                 for (let i = 0; i < snake.length; i++) {
@@ -422,7 +422,7 @@ function outOfBorder(actualAV, snakeDied) {
                 ctx.drawImage(eater_closed, (snakeDied[0][0] - 1) * size - size, (snakeDied[0][1] + - 1) * size - size, size*3, size*3);
                 snake.shift();
                 appleFunction();
-                if (mode.value==1) {
+                if (mode.value==1 || mode.value==3) {
                     blocksDisplay();
                 }
                 for (let i = 0; i < snake.length; i++) {
@@ -439,7 +439,7 @@ function outOfBorder(actualAV, snakeDied) {
                 break;
             case 2:
                 appleFunction();
-                if (mode.value==1) {
+                if (mode.value==1 || mode.value==3) {
                     blocksDisplay();
                 }
                 for (let i = 0; i < snake.length; i++) {
@@ -466,14 +466,14 @@ function play() {
     ctx.fillStyle = "#5F4B43";
     ctx.fillRect(size*3, size*3, canvas.width - size*3*2, canvas.height - size*3*2);
     appleFunction();
-    if (mode.value==1) {
+    if (mode.value==1 || mode.value==3) {
         blocksDisplay();
     }
     if (checkColision()) {
         clearInterval(playTimer);
         endGame();
     }else{
-        if (mode.value==2 && apple.length==1) {
+        if ((mode.value==2 || mode.value==3) && apple.length==1) {
             snake.unshift([snake[0][0]+axisVelocity[0],snake[0][1]+axisVelocity[1]]);
             snake.unshift([apple[0][0],apple[0][1]]);
             acumulation--;

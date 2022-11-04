@@ -35,6 +35,22 @@ main {
     text-align: center;
 }
 
+#login h1 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+    font-size: 50px;
+}
+
+#menu h1 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #000;
+    text-align: center;
+    font-size: 50px;
+}
+
 #login .user-box {
     position: relative;
 }
@@ -98,6 +114,10 @@ main {
 
 #login a:first-of-type {
     margin-right: 50px;
+}
+
+#menu > * {
+    margin: 5px;
 }
 
 #menu {
@@ -170,6 +190,7 @@ main {
 
 #username_credentials {
     height: min-content;
+    font-size: 30px;
 }
 
 #user_credentials {
@@ -183,7 +204,8 @@ main {
 }
 
 #menuRanking {
-    padding-left: 20px;
+    justify-content: center;
+    align-items: center;
     display: flex;
     flex-direction: column;
 }
